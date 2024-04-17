@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Employee extends Model
@@ -18,4 +19,8 @@ class Employee extends Model
         'lname',
         'email',
     ];
+    public function inventories(): BelongsToMany
+    {
+        return $this->belongsToMany(Inventory::class);
+    }
 }

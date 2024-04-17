@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Inventory;
 use App\Models\Employee;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -20,6 +21,20 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        Inventory::factory()->create([
+            'inventoryName' => 'milk',
+            'inventoryID' => 'Dairy001'
+        ]);
+        Inventory::factory()->create([
+            'inventoryName' => 'cheese',
+            'inventoryID' => 'Dairy002'
+        ]);
+        Inventory::factory()->create([
+            'inventoryName' => 'yogurt',
+            'inventoryID' => 'Dairy003'
+        ]);
+
+
         Employee::factory(20)->create();
     }
 }

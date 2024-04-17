@@ -13,7 +13,9 @@ class InventoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('inventories.index', [
+            'inventories' => Inventory::all()
+        ]);
     }
 
     /**
@@ -35,9 +37,11 @@ class InventoryController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Inventory $inventory)
+    public function show(Inventory $inventory, $id)
     {
-        //
+        $inventory = Inventory::find($id);
+        $employee = $inventory->employees;
+        return view('inventories.show', ['inventory' => $inventory, 'employees' => $employee]);
     }
 
     /**

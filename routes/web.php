@@ -3,10 +3,21 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InventoryController;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get(
+    'inventories',
+    [InventoryController::class, 'index']
+)->name('inventories.index');
+
+Route::get(
+    'inventories/{id}',
+    [InventoryController::class, 'show']
+)->name('inventories.show');
+
 Route::get(
     'employees/trash/{id}',
     [EmployeeController::class, 'trash']

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreEmployeeRequest;
 use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
+use App\Models\Inventory;
 
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -27,7 +28,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        return view('employees.create', ['inventories' => Inventory::all()]);
     }
 
     /**
@@ -35,9 +36,8 @@ class EmployeeController extends Controller
      */
     public function store(StoreEmployeeRequest $request)
     {
-        Employee::create($request->validated());
-
-        Session::flash('success', 'Employee added successfully');
+        $employee = Employee::create($request->validated());
+        $employee->inventories()->attach($request->inventory);
         return redirect()->route('employees.index');
     }
 

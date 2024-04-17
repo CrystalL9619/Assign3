@@ -36,6 +36,14 @@
                     </span>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="inventoryName" class="form-label">Inventory</label>
+                <select name="inventory" id="inventory">
+                    @foreach ($inventories as $inventory)
+                        <option value="{{ $inventory->id }}">{{ $inventory->inventoryName }}</option>
+                    @endforeach
+                </select>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
